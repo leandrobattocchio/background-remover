@@ -1,5 +1,3 @@
-export const CLOUDINARY_INFO = {
-    API_KEY: '858713597779387',
-    CLOUDNAME: 'dkgxzwrj7',
-    UPLOAD_PRESET: 'ml_default'
-}
+export const CLOUDNAME = import.meta.env.VITE_CLOUDNAME;
+export const API_KEY = import.meta.env.VITE_API_KEY;
+export const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;

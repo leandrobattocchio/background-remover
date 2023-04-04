@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { backgroundRemoval, blur } from "@cloudinary/url-gen/actions/effect";
 import { useStore } from "./useStore";
-import { CLOUDINARY_INFO } from "../constants/cloudinaryInfo";
+import { CLOUDNAME, UPLOAD_PRESET, API_KEY } from "../constants/cloudinaryInfo";
 import Dropzone from "dropzone";
 
 const useCloudinary = () => {
@@ -24,9 +24,10 @@ const useCloudinary = () => {
         state.imageStatus
     ]);
 
+
     const cloudinary = new Cloudinary({
         cloud: {
-            cloudName: CLOUDINARY_INFO.CLOUDNAME,
+            cloudName: CLOUDNAME,
         },
         url: {
             secure: true,
@@ -42,9 +43,9 @@ const useCloudinary = () => {
 
         dropzone.on("sending", (file, xhr, formData) => {
             uploadImage();
-            formData.append("upload_preset", CLOUDINARY_INFO.UPLOAD_PRESET);
+            formData.append("upload_preset", UPLOAD_PRESET);
             formData.append("timestamp", Date.now() / 1000);
-            formData.append("api_key", CLOUDINARY_INFO.API_KEY);
+            formData.append("api_key", API_KEY);
         });
 
         dropzone.on("success", (file, response) => {
